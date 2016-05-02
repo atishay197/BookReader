@@ -51,6 +51,19 @@ namespace I2T2S_1._0
                 UpdateLabel.Refresh(); // Update label to show status
                 ocr.Init(null, "eng", false);
                 var result = (ocr.DoOCR(image, Rectangle.Empty)); // Conversion of image to text
+                UpdateLabel.Text = "Image to Text conversion done";
+                UpdateLabel.Refresh(); // Update label to show new status
+                await Task.Delay(400);
+                String finalword = ""; // Words appended to this are finally displayed
+                foreach (tessnet2.Word word in result)
+                {
+                    UpdateLabel.Text = "Writing : " + word.Text;
+                    UpdateLabel.Refresh(); // Update label to show new status
+                    String temp = finalword;
+                    finalword = temp + " " + word.Text;
+                    Console.WriteLine("{0} ",word.Text);
+                }
+                TextBox.Text = finalword; // Write Final Word to TextBox
                 Console.WriteLine("{0} ", finalword);
                 TextBox.Refresh();
                 UpdateLabel.Text = "Press play for audio...";
