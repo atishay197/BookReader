@@ -43,6 +43,15 @@ namespace I2T2S_1._0
                 String path = fdlg.FileName; // Store path in String
                 PictureBox.Image = Image.FromFile(BrowseLabel.Text); // Display image
                 UpdateLabel.Text = "Displaying Image from" + path;
+                await Task.Delay(200);
+                UpdateLabel.Refresh();
+                var image = new Bitmap(PictureBox.Image); // Convert image into Bitmap
+                var ocr = new tessnet2.Tesseract(); // Declare and create object for I2T
+                UpdateLabel.Text = "Image to Text conversion...";
+                UpdateLabel.Refresh(); // Update label to show status
+                ocr.Init(null, "eng", false);
+                var result = (ocr.DoOCR(image, Rectangle.Empty)); // Conversion of image to text
+                Console.WriteLine("{0} ", finalword);
                 TextBox.Refresh();
                 UpdateLabel.Text = "Press play for audio...";
                 UpdateLabel.Refresh(); // Update label to show new status
