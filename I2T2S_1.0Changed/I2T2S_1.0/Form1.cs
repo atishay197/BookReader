@@ -78,6 +78,19 @@ namespace I2T2S_1._0
             UpdateLabel.Refresh(); // Update label to guide user
         }
 
+        private void PauseButton_Click(object sender, EventArgs e)
+        {
+            isPause = true;
+            if (reader.State == SynthesizerState.Speaking)
+            {
+                reader.Pause(); // Pause if audio is playing
+            }
+        }
+
+        private void CopyButton_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(TextBox.Text); // Copy text in text box to clipboard
+        }
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
