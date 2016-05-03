@@ -78,5 +78,21 @@ namespace I2T2S_1._0
             UpdateLabel.Refresh(); // Update label to guide user
         }
 
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            PictureBox.Image = null; // Clear picture box
+            isPause = false; // set not pause
+            PauseButton.Enabled = false;
+            StopButton.Enabled = false; // disable buttons that are not needed currently
+            if (reader != null)
+            {
+                reader.Dispose(); // close audio if playing
+            }
+            TextBox.Text = "";
+            BrowseLabel.Text = ""; // empty text box and browser label
+            UpdateLabel.Text = "Select Image (Browse) to begin";
+            UpdateLabel.Refresh(); // Update label to guide user
+        }
     }
 }
