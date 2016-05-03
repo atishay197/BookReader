@@ -40,6 +40,13 @@ namespace I2T2S_1._0
                 var ocr = new tessnet2.Tesseract(); // Declare and create object for I2T
                 UpdateLabel.Text = "Image to Text conversion...";
                 UpdateLabel.Refresh(); // Update label to show status
+                ocr.Init(null, "eng", false);
+                var result = (ocr.DoOCR(image, Rectangle.Empty)); // Conversion of image to text
+                UpdateLabel.Text = "Image to Text conversion done";
+                UpdateLabel.Refresh(); // Update label to show new status
+                await Task.Delay(400);
+                String finalword = ""; // Words appended to this are finally displayed
+                foreach (tessnet2.Word word in result)
                 {
                     UpdateLabel.Text = "Writing : " + word.Text;
                     UpdateLabel.Refresh(); // Update label to show new status
