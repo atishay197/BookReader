@@ -64,6 +64,21 @@ namespace I2T2S_1._0
             {
                 reader.Resume(); // if audio is paused, resume
             }
+            else
+            {
+                reader.Dispose();
+                if (TextBox.Text != "")    //if text area is not empty
+                {
+
+                    reader = new SpeechSynthesizer();
+                    reader.SpeakAsync(TextBox.Text); // start playing text
+                }
+                else
+                {
+                    MessageBox.Show("Please select image with Text to play Audio", "No Text", MessageBoxButtons.OK);
+                    // Display error if no text in text feild
+                }
+            }
         }
 
         private void StopButton_Click(object sender, EventArgs e)
