@@ -20,6 +20,15 @@ namespace I2T2S_1._0
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            reader = new SpeechSynthesizer(); // Create a new object for T2S
+            PauseButton.Enabled = false;
+            StopButton.Enabled = false; // Disable stop and pause buttons as no audio is playing now
+            UpdateLabel.Text = "Select Image (Browse) to begin";
+            UpdateLabel.Refresh(); // Update label to guide user
+        }
+
         private async void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog fdlg = new OpenFileDialog(); // File dialog to be opened for file selection
